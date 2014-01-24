@@ -36,7 +36,6 @@ uint partial_product(uint start, uint len, const uint b[])
   return res;
 }
 
-#define RANGE_CHECK
 template<class T,uint... M>
 class tensor
 {
@@ -45,8 +44,8 @@ class tensor
 public:
   tensor():rank(dimsum(M...)), dims {M...}
     {
-      for (uint i = 0; i != rank-1; ++i)
-        _point_multipliers[i] = partial_product(i+1,rank,dims);
+      for (uint i = 0; i != dimsum(M...)-1; ++i)
+        _point_multipliers[i] = partial_product(i+1,dimsum(M...),dims);
       _point_multipliers[rank-1] = 1;
     }
   ~tensor(){}
@@ -71,22 +70,19 @@ public:
       return data[point(a...)];
     }
 private:
+
   T data[product(M...)];
   uint _point_multipliers[dimsum(M...)];
 
-  uint _point(const uint a, const uint b[dimsum(M...)])
-    {
-      if (a == dimsum(M...)-1)
-        return b[a];
-      else
-        return b[a]*partial_product(a+1,rank,dims) + _point(a+1,b);  // add range check here
-    }
-
-  template<typename ...A> uint point(A... a)
+  template<typename ...A>
+    uint point(A... a)
     {
 #ifdef RANGE_CHECK
 #endif
       const uint b[dimsum(M...)] = {a...};
-      return _point (0,b);
+      uint c = 0;
+      for (uint i = 0; i != rank; ++i)
+        c += b[i]*_point_multipliers[i];
+      return c;
     }
 };
