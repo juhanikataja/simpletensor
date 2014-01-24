@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     std::cout << a.dims[i] << " ";
   std::cout << a.dims[a.rank-1] << std::endl;
   std::cout << a.rank << std::endl;
-  a(1,0,0,0) = 1;
-  std::cout << a(1,0,0,0) << std::endl;
+  a(1,2,2,1) = 1;
+  std::cout << a(1,2,2,1) << std::endl;
   return 0;
 }
