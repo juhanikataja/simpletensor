@@ -1,8 +1,15 @@
 #include<iostream>
 #include<vector>
 #include<stdexcept>
+#include<tuple>
 
 typedef unsigned int uint;
+
+template<typename M>
+constexpr M product()
+{
+  return (M) 1;
+}
 
 template<typename M>
 constexpr M product(M m)
@@ -55,7 +62,6 @@ constexpr A rest_prod(A a, B... b)
   return product(b...);
 }
 
-
 #define RANGE_CHECK
 template<class T,uint... M>
 class tensor
@@ -65,6 +71,7 @@ class tensor
 public:
   tensor():rank(dimsum(M...)), dims {M...}
     {
+      std::cout << "This is the weakness of static tensor.h class: We need to initialize a non-constant uint array\n";
       for (uint i = 0; i != dimsum(M...)-1; ++i)
         _point_multipliers[i] = partial_product(i+1,dimsum(M...),dims);
       _point_multipliers[rank-1] = 1;
@@ -113,6 +120,9 @@ private:
           range_check(m+1, a...);
       }
 #endif
+
+  struct _bar{};
+
 
   template<typename ...A>
     uint point(A... a)
