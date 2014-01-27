@@ -50,7 +50,7 @@ uint partial_product(uint start, uint len, const uint b[])
 }
 
 template <typename A, typename... B>
-A rest_prod(A a, B... b)
+constexpr A rest_prod(A a, B... b)
 {
   return product(b...);
 }
@@ -124,4 +124,3 @@ private:
       return c;
     }
 };
-

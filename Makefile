@@ -7,7 +7,7 @@ USE_RT_SCALING = -DUSE_RT_SCALING
 #USE_RT_SCALING =
 
 #CXXFLAGS = -std=c++0x -march=core-avx2 -O3 -funroll-loops -Wno-write-strings
-CXXFLAGS = -std=c++11 -O3  -Wall -mavx -Wno-write-strings 
+CXXFLAGS = -std=c++11 -O3  -Wall -Wno-write-strings 
 #CXXFLAGS += -gcc-name=/usr/bin/gcc-4.7 -gxx-name=/usr/bin/g++-4.7
 CXXFLAGS += -Wno-comment 
 CFLAGS = -fPIC -Wall -ansi -pedantic
