@@ -5,7 +5,7 @@
 #include<array>
 #include<complex>
 
-#define M_MAX 2000
+#define M_MAX 500
 #define N_MAX 1000000
 
 #define REAL double
@@ -15,6 +15,12 @@
 typedef unsigned int uint;
 
 template<typename T, uint... dims> struct multiarray;
+
+template<typename T, uint... dims> 
+multiarray<T,dims...> &operator=(multiarray<T, dims...> &&R);
+
+template<typename T, uint dim>
+multiarray<T,dim> &operator
 
 template<typename T, uint dim, uint... dims>
 struct multiarray<T, dim, dims...>
@@ -31,6 +37,7 @@ struct multiarray<T,dim>
    T data[dim];
    T &operator[](uint n){return data[n];};
 };
+
 
 /*
  *template<typename T>
