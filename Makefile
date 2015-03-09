@@ -18,7 +18,7 @@ LIB_DIRS =
 
 #LIBS = -ltbb -ltbbmalloc_proxy -ltbbmalloc -lhdf5_cpp -lhdf5 -lmkl_rt -lm
 LIBS = -lm
-OBJECTS := tensor.o multiarray.o static_mat.o
+OBJECTS := tensor.o 
 
 %.o: %.cpp
 	$(CXX) $(INCLUDES) -c $(CXXFLAGS) $*.cpp -o $*.o
@@ -27,12 +27,6 @@ OBJECTS := tensor.o multiarray.o static_mat.o
 tensor: tensor.o
 	$(CXX) $(LIB_DIRS) $< -o $@ $(LIB_DIRS) $(LIBS)
 	./tensor
-
-multiarray: multiarray.o
-	$(CXX) $(LIB_DIRS) $^ -o $@ $(LIB_DIRS) $(LIBS)
-
-static_mat: static_mat.o
-	$(CXX) $(LIB_DIRS) $^ -o $@ $(LIB_DIRS) $(LIBS)
 
 
 distclean: clean
