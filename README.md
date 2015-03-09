@@ -5,7 +5,7 @@ Extremely simplistic variable rank tensor template library.
 
 ## Example and installation
 
-        $ make
+        $ make all
         $ ./tensor
         2 3 3 2
         4
