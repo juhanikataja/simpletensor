@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
         a[0][0] = 1/(double)n;
         a[1][0] += a[0][0];
         b[0][0] += a[0][0];
+
       }
   cout << b[0][0] << std::endl;
   return 0;
