@@ -150,10 +150,11 @@ public:
 private:
   
   uint rank;
-  uint* dims;
+  uint *dims, *_index_multipliers;
+  T *data;
+
   bool allocated_data, allocated_dims;
-  T* data;
-  uint* _index_multipliers;
+
   template<typename ...U>
     void setdims(uint j, uint M0, U... M)
     { dims[j] = M0;
