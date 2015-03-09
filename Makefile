@@ -24,10 +24,9 @@ OBJECTS := tensor.o multiarray.o static_mat.o
 	$(CXX) $(INCLUDES) -c $(CXXFLAGS) $*.cpp -o $*.o
 	$(CXX) $(INCLUDES) -MM $(CXXFLAGS) $*.cpp > $*.d
 
--include $(OBJECTS:.o=.d)
-
 tensor: tensor.o
-	$(CXX) $(LIB_DIRS) $^ -o $@ $(LIB_DIRS) $(LIBS)
+	$(CXX) $(LIB_DIRS) $< -o $@ $(LIB_DIRS) $(LIBS)
+	./tensor
 
 multiarray: multiarray.o
 	$(CXX) $(LIB_DIRS) $^ -o $@ $(LIB_DIRS) $(LIBS)
@@ -45,7 +44,13 @@ clean: depclean
 depclean:
 	rm -f *.d
 
-all: static_mat multiarray tensor
+FORCE:
 
+test: FORCE tensor
+	./tensor
 
-.PHONY: clean depclean 
+all: FORCE static_mat multiarray tensor test
+
+-include $(OBJECTS:.o=.d)
+
+.PHONY: clean depclean
