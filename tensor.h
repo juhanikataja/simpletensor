@@ -116,7 +116,7 @@ public:
       setdims(0, M...);
       rank = dimsum(M...);
 
-      for (uint i = 0; i != dimsum(M...)-1; ++i)
+      for (uint i = 0; i != rank-1; ++i)
         _index_multipliers[i] = partial_product(i+1,dimsum(M...),dims);
       _index_multipliers[rank-1] = 1;
     }

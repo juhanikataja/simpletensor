@@ -20,13 +20,13 @@ int main(int argc, char *argv[])
   a.reset(some_data, 2,2);
   std::cout << a(1,1) <<std::endl;
 
-  tensor<std::string> b(2,2);
+  tensor<std::string> b(8);
   tensor<std::string> c;
 
-  b(0,0) = "String";
-  b(0,1) = "variables";
-  b(1,0) = "work";
-  b(1,1) = "too";
+  b(0) = "String";
+  b(1) = "variables";
+  b(2) = "work";
+  b(3) = "too";
 
   c.reset(b.getdata(), 2,2);
 
